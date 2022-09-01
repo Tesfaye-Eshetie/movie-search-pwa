@@ -5,7 +5,7 @@ on:
   pull_request:
   push:
     branches: 
-      - GitHub-action-hosting
+      - main
 jobs:
   test:
     name: Running Units Tests
