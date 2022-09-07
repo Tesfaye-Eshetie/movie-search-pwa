@@ -1,11 +1,17 @@
-import React from 'react';
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import Layout from './pages/Layout.jsx'
+import Routers from './routers.jsx'
 import './App.css'
-// import Home from './pages/Home.jsx'
-import Search from './pages/Search.jsx';
+
 
 function App() {
   return (
-    <Search />
+    <BrowserRouter>
+      <Layout>
+        <Routers/>
+      </Layout>
+    </BrowserRouter>
   )
 }
 

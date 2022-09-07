@@ -1,14 +1,12 @@
 import React from 'react'
-import Footer from '../components/Footer.jsx'
-import Header from '../components/Header.jsx'
 import Form from '../components/Form.jsx'
+// import MovieDisplay from '../components/MovieDisplay.jsx'
 
 export default function Search() {
   return (
     <>
-      <Header />
       <Form />
-      <Footer />
+      {/* <MovieDisplay /> */}
     </>
   )
 }

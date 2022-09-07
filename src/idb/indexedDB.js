@@ -11,7 +11,10 @@ export const setSearchMovie = async (key, data) =>
   (await database).put('searchMovie', data, key);
 
 export const setFavMovie = async (key, data) =>
-  (await database).put('favoriteMovie', { data }, key);
+  (await database).put('favoriteMovie', data, key);
+
+export const deleteFavMovie = async (key) =>
+  (await database).delete('favoriteMovie', key);
 
 export const getComments = async (key) =>
   (await database).get('searchMovie', key);
@@ -50,19 +53,6 @@ const createFavButton = (div, data) => {
   });
 
   div.append(bntFav);
-};
-
-const removeFav = (div, key) => {
-  const bntFav = document.createElement('button');
-  bntFav.textContent = 'Remove from fav';
-  bntFav.classList.add('red-button');
-  bntFav.classList.add('fav-button');
-  div.append(bntFav);
-
-  bntFav.addEventListener('click', async () => {
-    (await database).delete('favoriteMovie', key);
-    window.location.reload();
-  });
 };
 
 const createNoteInput = (div) => {
@@ -143,19 +133,6 @@ export const getSearchMovie = async (con) => {
   });
 };
 
-export const getFavMovie = async (con) => {
-  (await database).getAll('favoriteMovie').then((res) => {
-    if (res.length) {
-      for (let i = 0; i < res.length; i++) {
-        const displayDiv = document.createElement('div');
-        displayDiv.classList.add('display-div');
-        console.log(res[i]);
-
-        createMovieDisplay(displayDiv, res[i].data);
-        removeFav(displayDiv, res[i].data.imdbID);
-
-        con.append(displayDiv);
-      }
-    }
-  });
+export const getFavMovie = async () => {
+  (await database).getAll('favoriteMovie').then((res) =>res);
 };

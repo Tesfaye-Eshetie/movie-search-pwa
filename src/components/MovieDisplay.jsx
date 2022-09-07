@@ -1,25 +1,31 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import MovieCard from './MovieCard.jsx';
+import './MovieDisplay.css'
 
 export default function MovieDisplay() {
+  const [movie, setMovie] = useState([]);
+
+  const baseURL = 'https://www.omdbapi.com/'
+  const APIKey = import.meta.env.VITE_APIKey
+  const searchTerm = 'war'
+  const plotValue = 'short'
+
+  const getMovies = async() => {
+    try {
+      const {data} = await axios.get(`${baseURL}?t=${searchTerm}&plot=${plotValue}&apikey=${APIKey}`);
+      setMovie(data);
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+  useEffect(()=> {
+    getMovies();
+  },
+  []);
+
   return (
-    // <div className="card" >
-    //   <div className="div-flex">
-    //     <img />
-    //   </div>
-    //   <div className="div-flex">
-    //     <h2 id='title'></h2>
-    //     <h3 id='year'></h3>
-    //     <div>
-    //       <h3>Ratings values from various sources</h3>
-    //       <ul id="rating">
-    //         <li id="one"></li>
-    //         <li id="two"></li>
-    //         <li id="three"></li>
-    //       </ul>
-    //     </div>
-    //     <p><span className="span-flex">Released Date: </span><span id="date"></span></p>
-    //   </div>
-    // </div>
-    <>hi</>
+    <MovieCard movie={movie} bntFav='' />
   )
 }

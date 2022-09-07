@@ -1,12 +1,8 @@
 import React from 'react'
-import Footer from '../components/Footer.jsx'
-import Header from '../components/Header.jsx'
+import FavoriteMovies from '../components/FavoriteMovies.jsx'
 
 export default function Favorite() {
   return (
-    <>
-      <Header />
-      <Footer />
-    </>
+    <FavoriteMovies />
   )
 }

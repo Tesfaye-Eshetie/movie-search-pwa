@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './Header.css'
 
 export default function Header() {
@@ -6,20 +7,14 @@ export default function Header() {
     <>   
       <nav className='navbar'>
         <div className='navbar__logo'>
-          <a href='index.html'>
-            <img src='../../images/logo.png' alt='Logo' />
-          </a>
+          <NavLink to={'/'}><img src='../../images/logo.png' alt='Logo' /></NavLink>
         </div>
         <ul className='navbar__items'>
           <li className='navbar__list'>
-            <a href='search.html' className='navbar__link'>
-						Search
-            </a>
+            <NavLink to={'/search'} className='navbar__link'>Search</NavLink>
           </li>
           <li className='navbar__list'>
-            <a href='favorite.html' className='navbar__link'>
-						Favorite
-            </a>
+            <NavLink to={'/favorite'} className='navbar__link'>Favorite</NavLink>
           </li>
           <li className='navbar__list'>
             <a href='#contact' className='navbar__link'>
