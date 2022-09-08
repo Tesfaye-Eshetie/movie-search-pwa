@@ -113,8 +113,9 @@ button:hover {
 .input-flex.success input {
   border-color: #09c372;
 }
-.input-flex.error input {
-  border-color: #ff3860;
+.input-control .error {
+  color: #ff3860;
+  font-size: .8rem;
 }
 .input-flex.error input::placeholder {
   color: #ff3860;
@@ -159,7 +160,8 @@ select > option {
 }
 .no-response {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 80vw;
   min-height: 8rem;

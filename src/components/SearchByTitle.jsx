@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-// import SetMovie from './SetMovie.jsx';
 import {setSearchMovie } from '../idb/indexedDB';
 import axios from 'axios'
 
-export default function Form(props) {
+export default function SearchByTitle() {
   const [searchInput, setSearchInput] = useState({});
+  const [error, setError] = useState('')
 
   const handleChange = (e) => {
     const name = e.target.name;
@@ -27,9 +27,16 @@ export default function Form(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    console.log(searchInput);
-    const searchURL = `${baseURL}?t=${searchInput.title}&plot=Short&apikey=${APIKey}`
-    getMovie(searchURL);  
+
+    if (searchInput.title && searchInput.title !== '' &&  searchInput.year !== '') {
+      getMovie(
+        `${baseURL}?t=${searchInput.title}&y=${searchInput.year}&plot=${searchInput.plot}&apikey=${APIKey}`
+      );
+    } else if (searchInput.title && searchInput.title !== '') {
+      getMovie(`${baseURL}?t=${searchInput.title}&plot=${searchInput.plot}&apikey=${APIKey}`);
+    } else {
+      setError('Title is required...');
+    }
     setSearchInput({});
   }
 
@@ -37,44 +44,43 @@ export default function Form(props) {
     <>
       <form className="form" action="/" onSubmit={handleSubmit}>
         <fieldset>
-          <legend>By {props.legend}</legend>
+          <legend>By Title</legend>
           <div className="input-control">
             <div className="input-flex">
-              <label className="label">{props.legend}:
+              <label className="label">Title:
                 <input
                   type="text"
                   name='title'
                   value={searchInput.title || ''} 
                   onChange={handleChange}
-                  placeholder={props.placeholder}
+                  placeholder="Title of the movie..."
                 />
               </label>
             </div>
-            <div className="error">{props.required}</div>
+            <div className="error">{error}</div>
           </div>
-          {
-            props.year && 
-        <div className="input-control">
-          <div className="input-flex">
-            <label className="label">Year:
-              <input
-                type="number"
-                name='year' 
-                value={searchInput.year || ''} 
-                onChange={handleChange}
-                min="1928"
-                max="2022"
-                placeholder="Year..."
-              />
-            </label>       
+          <div className="input-control">
+            <div className="input-flex">
+              <label className="label">Year:
+                <input
+                  type="number"
+                  name='year' 
+                  value={searchInput.year || ''} 
+                  onChange={handleChange}
+                  min="1928"
+                  max="2022"
+                  placeholder="Year..."
+                />
+              </label>       
+            </div>
           </div>
-        </div>
-          }
           <div className="input-control">
             <div id="input-flex">
               <label className="label">Plot:
-                <select>
-                  <option value="Short" selected>Short</option>
+                <select name='plot' 
+                  value={searchInput.plot || 'Short'} 
+                  onChange={handleChange}>
+                  <option value="Short">Short</option>
                   <option value="Full">Full</option>
                 </select>
               </label>
@@ -83,7 +89,6 @@ export default function Form(props) {
           <button type="submit">Search</button>
         </fieldset>
       </form>
-      {/* <SetMovie title={searchInput.title || ''}/> */}
     </>
   )
 }

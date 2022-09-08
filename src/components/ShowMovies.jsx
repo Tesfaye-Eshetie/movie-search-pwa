@@ -12,6 +12,7 @@ export default function ShowMovies() {
     try {
       const {data}  = await axios.get(BASE_URL);
       const {results}= data;
+      console.log(results);
       setMovies(results);
     } catch (error) {
       console.log(error.message);
