@@ -18,8 +18,8 @@ export default function SearchByTitle() {
   const getMovie = async (url) => {
     try {
       const {data} = await axios(url);
-      console.log(data);
       setSearchMovie('search', data );
+      window.location.reload();
     } catch (error) {
       console.log(error.message);
     }

@@ -1,6 +1,8 @@
 import React from 'react'
 import NoResult from './NoResult.jsx'
+import Comment from './Comment.jsx';
 import { setFavMovie, deleteFavMovie } from '../idb/indexedDB';
+import ViewComment from './ViewComment.jsx';
 
 export default function MovieCard({movies, bntFav}) {
 
@@ -35,16 +37,25 @@ export default function MovieCard({movies, bntFav}) {
                 <h3>{movie.Year}</h3>
                 <div>
                   <h3>Ratings values from various sources</h3>
-                  {/* <ul>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                </ul> */}
+                  <ul>
+                    {movie.Ratings.map(rating => (
+                      <li key={rating.Source}>{rating.Source} : {rating.Value}</li>
+                    ))
+                    }
+                  </ul>
                 </div>
                 <p><span className="span-flex">Released Date: </span><span>{movie.Released}</span></p>
+                <p><span className="span-flex">Description: </span><span>{movie.Plot
+                }</span></p>
+                {
+                  movie.comment && 
+            <ViewComment viewComment={movie.comment} /> ||
+            <Comment />
+                }
               </div>
             </div>
-            {bntFav &&
+            {
+              bntFav &&
               <button className='fav-button red-button' onClick={() => removeFavorite(movie) }>Remove from fav</button> ||
               <button className='fav-button green-button' onClick={() => addFavorite(movie) }>add to fav</button>
             }

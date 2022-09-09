@@ -10,7 +10,6 @@ export default function MovieDisplay() {
     (await database).getAll('searchMovie')
       .then(data => {
         setMovies(data)
-        console.log(data);
       } )
   };
 
