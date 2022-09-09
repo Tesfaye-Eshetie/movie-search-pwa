@@ -1,25 +1,27 @@
 import React from 'react'
 import NoResult from './NoResult.jsx'
 import Comment from './Comment.jsx';
-import { setFavMovie, deleteFavMovie } from '../idb/indexedDB';
+import { database, setFavMovie, deleteFavMovie } from '../idb/indexedDB';
 import ViewComment from './ViewComment.jsx';
 
-export default function MovieCard({movies, bntFav}) {
+export default function MovieCard({movies, addFav, removeFav}) {
 
-  const addFavorite = ({ target }, movie) =>{
-    if (target.textContent === 'add to fav') {
-      setFavMovie(movie.imdbID, movie);
-      target.textContent = 'Remove from fav';
-      target.classList.add('red-button');
-    } else {
-      deleteFavMovie(movie.imdbID);
-      target.textContent = 'add to fav';
-      target.classList.remove('red-button');
-    }
+  const getSearchMovie = async () => {
+    (await database).get('searchMovie', 'search')
+      .then(data => {
+        setFavMovie(data.imdbID, data);
+      } )
+  };
+  
+  const addFavorite = ({target}) =>{
+    getSearchMovie();
+    target.classList.add('display-none');
+    target.nextElementSibling.classList.remove('display-none');
   }
 
   const removeFavorite = ( movie) =>{
     deleteFavMovie(movie.imdbID);
+    window.location.reload();
   }
 
   return (
@@ -55,9 +57,15 @@ export default function MovieCard({movies, bntFav}) {
               </div>
             </div>
             {
-              bntFav &&
-              <button className='fav-button red-button' onClick={() => removeFavorite(movie) }>Remove from fav</button> ||
-              <button className='fav-button green-button' onClick={() => addFavorite(movie) }>add to fav</button>
+              addFav &&
+              <>
+                <button className='fav-button green-button' onClick={addFavorite}>add to fav</button>
+                <button className='fav-button red-button display-none' onClick={() => removeFavorite(movie) }>Remove from fav</button>
+              </>
+            }
+            {
+              removeFav &&
+            <button className='fav-button red-button' onClick={() => removeFavorite(movie) }>Remove from fav</button>
             }
           </div>  
       ) 

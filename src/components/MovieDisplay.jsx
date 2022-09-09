@@ -19,6 +19,6 @@ export default function MovieDisplay() {
   []);
   
   return (
-    <MovieCard movies={movies} />
+    <MovieCard movies={movies} addFav/>
   )
 }

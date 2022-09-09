@@ -192,13 +192,6 @@ select > option {
   margin: 2rem;
 }
 .display-note {
-  display: flex;
-  /* flex-direction: column; */
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  margin: 1.5rem auto;
   max-width: 40rem;
 }
 .display-note textarea {
@@ -208,11 +201,13 @@ select > option {
   display: block;
   font-size: 12px;
   padding: 10px;
-  width: 32rem;
+  width: 26rem;
+  margin-bottom: 1rem;
 }
 .display-note p {
   max-width: 32rem;
   text-align: justify;
+  margin-bottom: 1rem;
 }
 .display-note p span {
   font-weight: 700;
@@ -224,7 +219,7 @@ select > option {
 .display-note .red-input::placeholder {
   color: #ff3860;
 }
-.display-note .display-none {
+.display-none {
   display: none;
 }
 .green-button {
@@ -235,10 +230,7 @@ select > option {
   background-color: #ec4c6c;
   border-color: #ec4c6c;
 }
-.yellow-button {
-  background-color: #e08a27;
-  border-color: #e08a27;
-}
+
 #contact {
 margin-left: -2rem;
 }
@@ -254,6 +246,6 @@ margin-left: -2rem;
     width: 80vw;
   }
   .display-note textarea, .display-note p {
-    width: 24rem;
+    width: 22rem;
   }
 }

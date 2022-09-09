@@ -10,7 +10,6 @@ export default function FavoriteMovies() {
     (await database).getAll('favoriteMovie')
       .then(data => {
         setMovies(data)
-        console.log(data);
       } )
   };
 
@@ -20,6 +19,6 @@ export default function FavoriteMovies() {
   []);
 
   return (
-    <MovieCard movies={movies} bntFav='bntFav' />
+    <MovieCard movies={movies} removeFav />
   )
 }

@@ -11,10 +11,9 @@ export default function Comment() {
   }
 
   const getSearchMovie = async (input) => {
-    (await database).getAll('searchMovie')
-      .then(res => {
-        res[0].comment = input;
-        const data = res[0];
+    (await database).get('searchMovie', 'search')
+      .then(data => {
+        data.comment = input;
         setSearchMovie('search', data);
       } )
   };
