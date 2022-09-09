@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import {database, setSearchMovie } from '../idb/indexedDB';
+import {database, setSearchMovie, setFavMovie } from '../idb/indexedDB';
 
-export default function Comment() {
+export default function Comment({store, id}) {
   const [comment, setComment] = useState('');
   const [placeholder, setPlaceholder] = useState('Note about the movie...');
 
@@ -10,11 +10,15 @@ export default function Comment() {
     setComment(value);
   }
 
-  const getSearchMovie = async (input) => {
-    (await database).get('searchMovie', 'search')
+  const putComment = async (input) => {
+    (await database).get(store, id)
       .then(data => {
         data.comment = input;
-        setSearchMovie('search', data);
+        if(store === 'searchMovie') {
+          setSearchMovie('search', data);
+        } else {
+          setFavMovie(id, data);
+        }       
       } )
   };
 
@@ -23,7 +27,7 @@ export default function Comment() {
     const element = e.target;
     const InputElem = element.previousElementSibling;
     if (comment && comment !== '') {
-      getSearchMovie(comment);
+      putComment(comment);
       InputElem.classList.add('display-none');
       window.location.reload();
     } else {
