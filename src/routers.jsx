@@ -9,9 +9,9 @@ import NotFound from './pages/NotFound.jsx'
 const Routers = () => (
   <>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/favorite" element={<Favorite />} />
+      <Route path="/movie-search-pwa/" element={<Home />} />
+      <Route path="/movie-search-pwa/search" element={<Search />} />
+      <Route path="/movie-search-pwa/favorite" element={<Favorite />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </>

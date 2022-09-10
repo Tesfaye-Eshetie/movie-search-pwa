@@ -8,14 +8,14 @@ export default function Header() {
     <>   
       <nav className='navbar'>
         <div className='navbar__logo'>
-          <NavLink to={'/'}><img src={Logo} alt='Logo' /></NavLink>
+          <NavLink to={'/movie-search-pwa/'}><img src={Logo} alt='Logo' /></NavLink>
         </div>
         <ul className='navbar__items'>
           <li className='navbar__list'>
-            <NavLink to={'/search'} className='navbar__link'>Search</NavLink>
+            <NavLink to={'/movie-search-pwa/search'} className='navbar__link'>Search</NavLink>
           </li>
           <li className='navbar__list'>
-            <NavLink to={'/favorite'} className='navbar__link'>Favorite</NavLink>
+            <NavLink to={'/movie-search-pwa/favorite'} className='navbar__link'>Favorite</NavLink>
           </li>
           <li className='navbar__list'>
             <a href='#contact' className='navbar__link'>
