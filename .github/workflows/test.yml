@@ -1,21 +1,20 @@
-
 name: Github Actions React PWA
 
 on:
   pull_request:
   push:
-    branches: 
+    branches:
       - main
 jobs:
   test:
     name: Running Units Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install
-      install: npm run install
-      test: npm run test
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        install: npm run install
+        test: npm run test

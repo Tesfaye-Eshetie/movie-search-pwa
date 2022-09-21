@@ -18,7 +18,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: var(--fw-normal);
   font-size: 1rem;
   background-color: var(--clr-primary);
@@ -115,7 +115,7 @@ button:hover {
 }
 .input-control .error {
   color: #ff3860;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 .input-flex.error input::placeholder {
   color: #ff3860;
@@ -233,7 +233,7 @@ select > option {
 }
 
 #contact {
-margin-left: -2rem;
+  margin-left: -2rem;
 }
 @media (max-width: 50rem) {
   #header h1 {
@@ -246,7 +246,17 @@ margin-left: -2rem;
   .form {
     width: 80vw;
   }
-  .display-note textarea, .display-note p {
+  .display-note textarea,
+  .display-note p {
     width: 22rem;
+  }
+}
+@media (max-width: 30rem) {
+  .form {
+    width: 90vw;
+  }
+  legend {
+    padding-left: 0;
+    margin-left: 0;
   }
 }

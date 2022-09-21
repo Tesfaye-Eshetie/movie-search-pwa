@@ -1,6 +1,6 @@
-import React from 'react'
-import FormCard from '../components/FormCard.jsx'
-import MovieDisplay from '../components/MovieDisplay.jsx'
+import React from "react";
+import FormCard from "../components/FormCard.jsx";
+import MovieDisplay from "../components/MovieDisplay.jsx";
 
 export default function Search() {
   return (
@@ -8,5 +8,5 @@ export default function Search() {
       <FormCard />
       <MovieDisplay />
     </>
-  )
+  );
 }

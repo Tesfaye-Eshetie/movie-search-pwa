@@ -1,24 +1,24 @@
-import React, {useState} from 'react'
-import {setSearchMovie } from '../idb/indexedDB';
-import axios from 'axios'
+import React, { useState } from "react";
+import { setSearchMovie } from "../idb/indexedDB";
+import axios from "axios";
 
 export default function SearchByTitle() {
   const [searchInput, setSearchInput] = useState({});
-  const [error, setError] = useState('')
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setSearchInput(values => ({...values, [name]: value}))
-  }
+    setSearchInput((values) => ({ ...values, [name]: value }));
+  };
 
-  const baseURL = 'https://www.omdbapi.com/'
-  const APIKey = import.meta.env.VITE_APIKey
+  const baseURL = "https://www.omdbapi.com/";
+  const APIKey = import.meta.env.VITE_APIKey;
 
   const getMovie = async (url) => {
     try {
-      const {data} = await axios(url);
-      setSearchMovie('search', data );
+      const { data } = await axios(url);
+      setSearchMovie("search", data);
       window.location.reload();
     } catch (error) {
       console.log(error.message);
@@ -26,19 +26,25 @@ export default function SearchByTitle() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
-    if (searchInput.title && searchInput.title !== '' &&  searchInput.year !== '') {
+    if (
+      searchInput.title &&
+      searchInput.title !== "" &&
+      searchInput.year !== ""
+    ) {
       getMovie(
         `${baseURL}?t=${searchInput.title}&y=${searchInput.year}&plot=${searchInput.plot}&apikey=${APIKey}`
       );
-    } else if (searchInput.title && searchInput.title !== '') {
-      getMovie(`${baseURL}?t=${searchInput.title}&plot=${searchInput.plot}&apikey=${APIKey}`);
+    } else if (searchInput.title && searchInput.title !== "") {
+      getMovie(
+        `${baseURL}?t=${searchInput.title}&plot=${searchInput.plot}&apikey=${APIKey}`
+      );
     } else {
-      setError('Title is required...');
+      setError("Title is required...");
     }
     setSearchInput({});
-  }
+  };
 
   return (
     <>
@@ -47,11 +53,12 @@ export default function SearchByTitle() {
           <legend>By Title</legend>
           <div className="input-control">
             <div className="input-flex">
-              <label className="label">Title:
+              <label className="label">
+                Title:
                 <input
                   type="text"
-                  name='title'
-                  value={searchInput.title || ''} 
+                  name="title"
+                  value={searchInput.title || ""}
                   onChange={handleChange}
                   placeholder="Title of the movie..."
                 />
@@ -61,25 +68,29 @@ export default function SearchByTitle() {
           </div>
           <div className="input-control">
             <div className="input-flex">
-              <label className="label">Year:
+              <label className="label">
+                Year:
                 <input
                   type="number"
-                  name='year' 
-                  value={searchInput.year || ''} 
+                  name="year"
+                  value={searchInput.year || ""}
                   onChange={handleChange}
                   min="1928"
                   max="2022"
                   placeholder="Year..."
                 />
-              </label>       
+              </label>
             </div>
           </div>
           <div className="input-control">
             <div id="input-flex">
-              <label className="label">Plot:
-                <select name='plot' 
-                  value={searchInput.plot || 'Short'} 
-                  onChange={handleChange}>
+              <label className="label">
+                Plot:
+                <select
+                  name="plot"
+                  value={searchInput.plot || "Short"}
+                  onChange={handleChange}
+                >
                   <option value="Short">Short</option>
                   <option value="Full">Full</option>
                 </select>
@@ -90,5 +101,5 @@ export default function SearchByTitle() {
         </fieldset>
       </form>
     </>
-  )
+  );
 }
