@@ -15,7 +15,7 @@ export default function FavoriteMovies() {
 
   useEffect(() => {
     getFavMovie();
-  }, []);
+  }, [movies]);
 
   return (
     <section className="display-container" id="display">

@@ -16,7 +16,7 @@ export default function MovieDisplay() {
 
   useEffect(() => {
     getSearchMovie();
-  }, []);
+  }, [movie]);
 
   return (
     <section className="display-container" id="display">

@@ -19,12 +19,10 @@ export default function AddFavortite({ movie }) {
 
   const addFavorite = () => {
     getSearchMovie();
-    window.location.reload();
   };
 
   const removeFavorite = (movie) => {
     deleteFavMovie(movie.imdbID);
-    window.location.reload();
   };
 
   return (

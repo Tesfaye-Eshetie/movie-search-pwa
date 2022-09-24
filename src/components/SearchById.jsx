@@ -19,7 +19,6 @@ export default function SearchById() {
     try {
       const { data } = await axios(url);
       setSearchMovie("search", data);
-      window.location.reload();
     } catch (error) {
       console.log(error.message);
     }
