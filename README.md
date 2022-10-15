@@ -2,6 +2,8 @@
 
 Movie Search PWA using React, vite, PWA and IndexedDB
 
+## Live URL: https://tesfaye-eshetie.github.io/movie-search-pwa/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
